@@ -7,7 +7,11 @@ const secret = process.env.JWT_SECRET;
 const loginControler = async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!email && password) res.status(400).json({ message: 'Some required fields are missing' });
+    const user = await UserService.getUserByEmail(email);
+    console.log(user);
+    if (user === null || user.password !== password) {
+       return res.status(400).json({ message: 'Invalid fields' }); 
+    }
     
     const jwtConfig = {
       expiresIn: '7d',

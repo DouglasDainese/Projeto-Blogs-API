@@ -1,4 +1,5 @@
 const express = require('express');
+const routers = require('./routers');
 
 // ...
 
@@ -11,6 +12,7 @@ app.get('/', (_request, response) => {
 
 app.use(express.json());
 
+app.use('/login', routers.loginRoute);
 // ...
 
 // É importante exportar a constante `app`,
