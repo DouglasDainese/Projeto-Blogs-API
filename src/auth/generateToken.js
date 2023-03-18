@@ -8,7 +8,7 @@ module.exports = (id) => {
     expiresIn: '7d',
     algorithm: 'HS256',
   };
-  const token = jwt.sign({ payLoad: { userId: id } }, secret, jwtConfig);
+  const token = jwt.sign({ payload: { userId: id } }, secret, jwtConfig);
 
   return token;
 };

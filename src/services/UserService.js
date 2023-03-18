@@ -17,7 +17,30 @@ const getUserByEmail = async (email) => {
     return user.dataValues;
 };
 
+const getAllUserService = async () => {
+  try {
+    const users = await User.findAll();
+  
+    const removepassword = users.map((user) => { 
+      const obj = { ...user.dataValues };
+      delete obj.password;
+      return obj;
+    });
+
+    return removepassword;
+  } catch (error) {
+    return { message: 'Internal Error' };
+  }
+};
+
+const getByUserId = async (id) => {
+  console.log(id);
+  return User.findOne({ where: { id } });
+};
+
 module.exports = {
   getUserByEmail,
   insertUser,
+  getAllUserService,
+  getByUserId,
 };
