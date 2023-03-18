@@ -14,6 +14,6 @@ app.use(express.json());
 // ...
 
 // É importante exportar a constante `app`,
-//iniciando o projeto
+// iniciando o projeto
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
