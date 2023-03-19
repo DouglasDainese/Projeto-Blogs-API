@@ -33,9 +33,14 @@ const getAllUserService = async () => {
   }
 };
 
-const getByUserId = async (id) => {
-  console.log(id);
-  return User.findOne({ where: { id } });
+const getByUserId = async (id) => User.findOne({ where: { id } });
+
+const findUserByid = async (id) => {
+    const user = await User.findOne({ 
+      where: { id },
+      attributes: { exclude: ['password'] },
+    });
+    return user; 
 };
 
 module.exports = {
@@ -43,4 +48,5 @@ module.exports = {
   insertUser,
   getAllUserService,
   getByUserId,
+  findUserByid,
 };

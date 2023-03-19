@@ -7,6 +7,10 @@ const userRoute = express.Router();
 
 userRoute.post('/', userFields, userController.insertNewUser);
 
-userRoute.get('/', validateJwt, userController.getAllUser);
+userRoute.use(validateJwt);
+
+userRoute.get('/', userController.getAllUser);
+
+userRoute.get('/:id', userController.getUser);
 
 module.exports = userRoute;

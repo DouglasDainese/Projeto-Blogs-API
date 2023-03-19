@@ -19,7 +19,20 @@ const getAllUser = async (req, res) => {
   return res.status(200).json(allUser);
 };
 
+const getUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await UserService.findUserByid(id);
+    if (user === null) return res.status(404).json({ message: 'User does not exist' }); 
+
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json('internal error');
+  }
+};
+
 module.exports = {
   insertNewUser,
   getAllUser,
+  getUser,
 };
