@@ -15,6 +15,7 @@ app.use(express.json());
 app.use('/login', routers.loginRoute);
 app.use('/user', routers.userRoute);
 app.use('/categories', routers.categoryRoute);
+app.use('/post', routers.postsRoute);
 // ...
 
 // É importante exportar a constante `app`,

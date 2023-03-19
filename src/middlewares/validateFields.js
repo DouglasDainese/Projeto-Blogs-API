@@ -25,7 +25,25 @@ const userFields = (req, res, next) => {
   next();
 };
 
+const postsFields = (req, res, next) => {
+  const { title, content, categoryIds } = req.body;
+  console.log(`title: ${title}`);
+  console.log(`content: ${content}`);
+  console.log(`categoryIds: ${categoryIds}`);
+  if (!title) { 
+    return res.status(400).json({ message: 'Some required fields are missing' }); 
+  }
+  if (!content) {
+    return res.status(400).json({ message: 'Some required fields are missing' });
+  }
+  if (!categoryIds) { 
+    return res.status(400).json({ message: 'Some required fields are missing' });
+  }
+  next();
+};
+
 module.exports = {
   loginFields,
   userFields,
+  postsFields,
 };
