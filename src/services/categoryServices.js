@@ -9,6 +9,16 @@ const insertNewCategories = async (name) => {
   }
 };
 
+const getAll = async () => {
+  try {
+    const allCategories = await Category.findAll();
+    return allCategories;
+  } catch (error) {
+    return null;
+  }
+};
+
 module.exports = {
   insertNewCategories,
+  getAll,
 };
