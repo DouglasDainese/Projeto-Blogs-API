@@ -43,10 +43,20 @@ const findUserByid = async (id) => {
     return user; 
 };
 
+const deleteUserService = async (userId) => {
+  try {
+    const userDeleted = await User.destroy({ where: { userId } });
+    return userDeleted;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getUserByEmail,
   insertUser,
   getAllUserService,
   getByUserId,
   findUserByid,
+  deleteUserService,
 };

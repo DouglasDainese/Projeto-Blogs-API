@@ -13,4 +13,5 @@ userRoute.get('/', userController.getAllUser);
 
 userRoute.get('/:id', userController.getUser);
 
+userRoute.delete('/me', userController.deleteUser);
 module.exports = userRoute;
