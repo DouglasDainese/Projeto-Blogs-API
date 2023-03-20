@@ -1,7 +1,9 @@
+const missingFields = { message: 'Some required fields are missing' };
+
 const loginFields = (req, res, next) => {
   const { email, password } = req.body;
     if (!(email && password)) {
-      return res.status(400).json({ message: 'Some required fields are missing' });
+      return res.status(400).json(missingFields);
     }
   next();
 };
@@ -29,13 +31,25 @@ const postsFields = (req, res, next) => {
   const { title, content, categoryIds } = req.body;
 
   if (!title) { 
-    return res.status(400).json({ message: 'Some required fields are missing' }); 
+    return res.status(400).json(missingFields); 
   }
   if (!content) {
-    return res.status(400).json({ message: 'Some required fields are missing' });
+    return res.status(400).json(missingFields);
   }
   if (!categoryIds) { 
-    return res.status(400).json({ message: 'Some required fields are missing' });
+    return res.status(400).json(missingFields);
+  }
+  next();
+};
+
+const updatePostsFields = (req, res, next) => {
+  const { title, content } = req.body;
+
+  if (!title) { 
+    return res.status(400).json(missingFields); 
+  }
+  if (!content) {
+    return res.status(400).json(missingFields);
   }
   next();
 };
@@ -44,4 +58,5 @@ module.exports = {
   loginFields,
   userFields,
   postsFields,
+  updatePostsFields,
 };

@@ -38,8 +38,20 @@ const insertNewPost = async ({ title, content, userId, categoryIds, today }) => 
   return result;
 };
 
+const updatePost = async (req) => {
+ try {
+  const { title, content, userId, id, updated } = req;
+  const postUpdate = await BlogPost.update({ title, content, updated }, 
+    { where: { id, userId } });
+  return postUpdate;
+ } catch (error) {
+  return error;
+ }
+};
+
 module.exports = {
   insertNewPost,
   getAllPost,
   getPostById,
+  updatePost,
 };
