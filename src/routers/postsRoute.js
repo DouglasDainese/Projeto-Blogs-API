@@ -9,6 +9,8 @@ postsRoute.use(validateJwt);
 
 postsRoute.post('/', postsFields, postController.insertNewPost);
 
+postsRoute.get('/search', postController.getPostBySearchController);
+
 postsRoute.get('/', postController.getAllPostController);
 
 postsRoute.get('/:id', postController.getPostById);

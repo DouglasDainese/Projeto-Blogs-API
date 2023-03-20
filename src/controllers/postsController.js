@@ -80,10 +80,22 @@ const deletePostController = async (req, res) => {
   }
 };
 
+const getPostBySearchController = async (req, res) => {
+  try {
+    const query = req.query.q;
+    console.log(query);
+    const resultSearch = await postsServices.getAllBySearch(query);
+    return res.status(200).json(resultSearch);
+  } catch (error) {
+    return res.status(500).json(errorInternalMessage);
+  }
+};
+
 module.exports = {
   insertNewPost,
   getAllPostController,
   getPostById,
   updatePostController,
   deletePostController,
+  getPostBySearchController,
 };
