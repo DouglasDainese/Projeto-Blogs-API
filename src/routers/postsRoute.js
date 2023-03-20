@@ -5,6 +5,10 @@ const { postsFields } = require('../middlewares/validateFields');
 
 const postsRoute = express.Router();
 
-postsRoute.post('/', postsFields, validateJwt, postController.insertNewPost);
+postsRoute.use(validateJwt);
+
+postsRoute.post('/', postsFields, postController.insertNewPost);
+
+postsRoute.get('/', postController.getAllPostController);
 
 module.exports = postsRoute;

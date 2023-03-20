@@ -15,10 +15,20 @@ const insertNewPost = async (req, res) => {
     const result = await postsServices.insertNewPost(newPost);
     return res.status(201).json(result.dataValues);
   } catch (error) {
-    res.status(500).json('Internal error');
+   return res.status(500).json('Internal error');
+  }
+};
+
+const getAllPostController = async (_req, res) => {
+  try {
+    const allPosts = await postsServices.getAllPost();
+    res.status(200).json(allPosts);
+  } catch (error) {
+   return res.status(500).json('Internal error');
   }
 };
 
 module.exports = {
   insertNewPost,
+  getAllPostController,
 };
