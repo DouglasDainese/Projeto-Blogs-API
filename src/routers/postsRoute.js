@@ -15,4 +15,6 @@ postsRoute.get('/:id', postController.getPostById);
 
 postsRoute.put('/:id', updatePostsFields, postController.updatePostController);
 
+postsRoute.delete('/:id', postController.deletePostController);
+
 module.exports = postsRoute;

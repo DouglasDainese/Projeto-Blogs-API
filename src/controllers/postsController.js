@@ -1,6 +1,7 @@
 const { postsServices, CategoryServices } = require('../services');
 
 const today = new Date(Date.now()).toISOString();
+const errorInternalMessage = 'Internal error';
 
 const insertNewPost = async (req, res) => {
   try {
@@ -16,7 +17,7 @@ const insertNewPost = async (req, res) => {
     const result = await postsServices.insertNewPost(newPost);
     return res.status(201).json(result.dataValues);
   } catch (error) {
-   return res.status(500).json('Internal error');
+   return res.status(500).json(errorInternalMessage);
   }
 };
 
@@ -25,7 +26,7 @@ const getAllPostController = async (_req, res) => {
     const allPosts = await postsServices.getAllPost();
     res.status(200).json(allPosts);
   } catch (error) {
-   return res.status(500).json('Internal error');
+   return res.status(500).json(errorInternalMessage);
   }
 };
 
@@ -38,7 +39,7 @@ const getPostById = async (req, res) => {
     }
     return res.status(200).json(post);
   } catch (error) {
-   return res.status(500).json('Internal error');
+   return res.status(500).json(errorInternalMessage);
   }
 };
 const updatePostController = async (req, res) => {
@@ -56,7 +57,26 @@ const updatePostController = async (req, res) => {
     const postUpdated = await postsServices.getPostById(id);
     return res.status(200).json(postUpdated);
   } catch (error) {
-   return res.status(500).json('Internal error');
+   return res.status(500).json(errorInternalMessage);
+  }
+};
+
+const deletePostController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    const postToDeleted = await postsServices.getPostById(id);
+    if (!postToDeleted) {
+      return res.status(404).json({ message: 'Post does not exist' });
+    }
+    
+    const postDeleted = await postsServices.deletePost({ id, userId });
+    if (postDeleted === 0) return res.status(401).json({ message: 'Unauthorized user' });
+
+    return res.status(204).json();
+  } catch (error) {
+    return res.status(500).json(errorInternalMessage);
   }
 };
 
@@ -65,4 +85,5 @@ module.exports = {
   getAllPostController,
   getPostById,
   updatePostController,
+  deletePostController,
 };

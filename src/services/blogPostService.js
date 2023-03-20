@@ -49,9 +49,19 @@ const updatePost = async (req) => {
  }
 };
 
+const deletePost = async ({ id, userId }) => {
+  try {
+    const postDeleted = await BlogPost.destroy({ where: { id, userId } });
+    return postDeleted;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   insertNewPost,
   getAllPost,
   getPostById,
   updatePost,
+  deletePost,
 };
