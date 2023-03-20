@@ -28,7 +28,21 @@ const getAllPostController = async (_req, res) => {
   }
 };
 
+const getPostById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await postsServices.getPostById(id);
+    if (!post) {
+      return res.status(404).json({ message: 'Post does not exist' });
+    }
+    return res.status(200).json(post);
+  } catch (error) {
+   return res.status(500).json('Internal error');
+  }
+};
+
 module.exports = {
   insertNewPost,
   getAllPostController,
+  getPostById,
 };

@@ -11,4 +11,6 @@ postsRoute.post('/', postsFields, postController.insertNewPost);
 
 postsRoute.get('/', postController.getAllPostController);
 
+postsRoute.get('/:id', postController.getPostById);
+
 module.exports = postsRoute;

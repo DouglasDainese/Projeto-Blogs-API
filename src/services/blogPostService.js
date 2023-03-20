@@ -11,6 +11,18 @@ const getAllPost = async () => {
   return allPosts;
 };
 
+const getPostById = async (id) => {
+  const post = await BlogPost.findOne({ 
+    where: { id },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ], 
+  });
+
+  return post;
+};
+
 const insertNewPost = async ({ title, content, userId, categoryIds, today }) => {
   const result = await sequelize.transaction(async (t) => {
     const newPost = await BlogPost.create({
@@ -29,4 +41,5 @@ const insertNewPost = async ({ title, content, userId, categoryIds, today }) => 
 module.exports = {
   insertNewPost,
   getAllPost,
+  getPostById,
 };
