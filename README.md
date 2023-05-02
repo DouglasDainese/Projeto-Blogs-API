@@ -1,6 +1,6 @@
 # API de Blogs
 
-Este é um projeto de uma API de blogs, desenvolvido como parte do curso de Desenvolvimento Web da Trybe. A API permite a criação, leitura, atualização e exclusão de usuários, categorias e posts de blog. Ela é desenvolvida com Node.js, Express e Sequelize ORM para conexão com o banco de dados.
+Este é um projeto de uma API de blogs, desenvolvido como parte do meu curso de Desenvolvimento Web que fiz na Trybe. A API permite a criação, leitura, atualização e exclusão de usuários, categorias e posts de blog. Ela é desenvolvida com Node.js, Express e Sequelize ORM para conexão com o banco de dados.
 
 ## Como utilizar
 
