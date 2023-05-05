@@ -27,7 +27,24 @@ Este é um projeto de uma API de blogs, desenvolvido como parte do meu curso de 
 ### Endpoints disponíveis
 
 - `POST /login`: permite fazer login na API com e-mail e senha de um usuário cadastrado.
+    - O corpo da requisição deverá seguir o formato abaixo:
+  ```json
+  {
+    "email": "lewishamilton@gmail.com",
+    "password": "123456"
+  }
+  ```
 - `POST /users`: permite cadastrar um novo usuário na API.
+    - O corpo da requisição deverá seguir o formato abaixo:
+  ```json
+  {
+    "displayName": "Brett Wiltshire",
+    "email": "brett@email.com",
+    "password": "123456",
+    "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
+    // a imagem não é obrigatória
+  }
+  ```
 - `GET /users`: permite listar todos os usuários cadastrados na API.
 - `GET /users/:id`: permite buscar um usuário específico pelo seu ID.
 - `PUT /users/:id`: permite atualizar as informações de um usuário específico pelo seu ID.
@@ -42,10 +59,6 @@ Este é um projeto de uma API de blogs, desenvolvido como parte do meu curso de 
 - `GET /posts/:id`: permite buscar um post de blog específico pelo seu ID.
 - `PUT /posts/:id`: permite atualizar as informações de um post de blog específico pelo seu ID.
 - `DELETE /posts/:id`: permite excluir um post de blog específico pelo seu ID.
-
-### Testes
-
-Para executar os testes automatizados do projeto, execute o comando `npm test`. Os testes são desenvolvidos com Jest e Supertest.
 
 ### Linter
 
